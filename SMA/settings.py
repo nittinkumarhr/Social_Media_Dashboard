@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     
     'auth_app.apps.AuthAppConfig',
     'core.apps.CoreConfig',
-    'common.apps.CommonConfig',
     'user.apps.UserConfig',
     
 ]
