@@ -1,0 +1,78 @@
+{% extends 'auth_app/base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/auth_app/main.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/auth_app/signin.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-sm-6 d-none d-md-block">
+            <img src="{% static 'image/phone_img.png' %}" class="signin__phone float-right">
+        </div>
+        <div class="col-sm-6 my-auto">
+            <div class="">
+                <div class="text-center card px-5 mr-md-auto signin__card">
+                    <div class="center-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 48 48" >
+                            <radialGradient id="Tkc2EFCGCAaG3EvLlEqzza_hp54uGDlrEZB_gr1" cx="24.39" cy="40.173" r="38.605" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fe7356"></stop><stop offset="1" stop-color="#fd297c"></stop></radialGradient><path fill="url(#Tkc2EFCGCAaG3EvLlEqzza_hp54uGDlrEZB_gr1)" d="M17.2,20.187c7.65-2.429,8.864-9.471,7.893-15.786c0,0,0-0.364,0.243-0.243	C32.743,7.802,41,15.452,41,27.23c0,8.743-6.921,16.636-17,16.636c-10.929,0-17-7.65-17-16.757c0-5.464,3.643-10.929,7.893-13.357	c0,0,0.364,0,0.364,0.243c0,1.214,0.486,4.25,1.821,6.071L17.2,20.187z"></path>
+                            </svg> <h4>Social Media Dashboard</h4>       
+                            
+                    </div> 
+                     {% comment %}showing the error of the form  {% endcomment %}
+                    <div class="signin">
+                        <div class="signin__form mb-3">
+                            {% if messages %}
+                                {% for message in messages %}
+                                <div class="alert alert-danger" role='alert'>
+                                    {{ message }}
+                                </div>
+                                {% endfor %}
+                            {% endif %}
+                            <form method="POST">
+                                {% csrf_token %}
+                                <div class="my-1 form__input">
+                                    <input id="id_email_username" type="text" name="email_username" placeholder="Email or Username">
+                                </div>
+                                <div class="my-1 form__input">
+                                    <input id="id_password" type="password" name="password" placeholder="Password">
+                                </div>
+                                <div class="my-4 mx-auto text-center">
+                                    <button class="btn btn-sm auth__btn">Sign in</button>
+                                </div>  
+                            </form>
+                        </div>
+                        <div class="text-center my-4">
+                            <p class="or__text">OR</p>
+                        </div>
+                        <div class="my-1 mx-auto text-center">
+                            <a class="login__fb__text text-decoration-none" href="">Log in with Facebook</a>
+                        </div>
+                        <div class="mb-4">
+                            <a class="forogt__password text-decoration-none" href="{% url 'password_reset'%}">Forgot password?</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center card mt-2 px-5 mr-md-auto signin__card">
+                    <p class="have__an__account py-3">Don't have an account? <a href="{% url 'singup_view' %}" class="text-decoration-none">Sign up</a></p>
+                </div>
+                <div class="text-center mt-2 px-5 mr-auto get__app">
+                    <p class="">Get the app.</p>
+                    <div class="row">
+                        <div class="col-6">
+                            <img src="{% static 'image/appstore.png' %}" class="app__download__img">
+                        </div>
+                        <div class="col-6">
+                            <img src="{% static 'image/playstore.png' %}" class="app__download__img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

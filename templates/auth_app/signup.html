@@ -1,0 +1,86 @@
+{% extends 'auth_app/base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/auth_app/main.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/auth_app/signup.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-sm-12 my-auto">
+            <div class="text-center card px-5 mx-auto signup__card">
+                <br>
+                <div class="center-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 48 48" >
+                        <radialGradient id="Tkc2EFCGCAaG3EvLlEqzza_hp54uGDlrEZB_gr1" cx="24.39" cy="40.173" r="38.605" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fe7356"></stop><stop offset="1" stop-color="#fd297c"></stop></radialGradient><path fill="url(#Tkc2EFCGCAaG3EvLlEqzza_hp54uGDlrEZB_gr1)" d="M17.2,20.187c7.65-2.429,8.864-9.471,7.893-15.786c0,0,0-0.364,0.243-0.243	C32.743,7.802,41,15.452,41,27.23c0,8.743-6.921,16.636-17,16.636c-10.929,0-17-7.65-17-16.757c0-5.464,3.643-10.929,7.893-13.357	c0,0,0.364,0,0.364,0.243c0,1.214,0.486,4.25,1.821,6.071L17.2,20.187z"></path>
+                        </svg> <h4>Social Media Dashboard</h4>       
+                        
+                </div>  
+                <br>
+                <div class="signup">
+                    <p class="signup__card__text">Sign up to see photos and videos from your friends.</p>
+                    <div class="my-4 mx-auto text-center">
+                        <button class="btn btn-sm auth__btn"><i class="fa fa-facebook-official" aria-hidden="true"></i> &nbsp;Log with Facebook</button>
+                    </div>
+                    <div class="text-center my-4">
+                        <p class="or__text">OR</p>
+                    </div>
+                    <div>
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ form.non_field_errors }}
+                            </div>
+                        {% endif%}
+                    </div>
+                    <div class="signup__form mb-3">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="my-1 form__input">
+                                <input id="id_email" type="email" name="email" placeholder="Email" class="form-control {% if form.email.errors %}is-invalid{% endif %}">
+                                <div class="invalid-feedback">
+                                    {{ form.email.errors }}
+                                </div>
+                            </div>
+                            <div class="my-1 form__input">
+                                <input id="id_username" type="text" name="username" placeholder="Username" class="form-control {% if form.username.errors %}is-invalid{% endif %}">
+                                <div class="invalid-feedback">
+                                    {{ form.username.errors }}
+                                </div>
+                            </div>
+                            <div class="my-1 form__input">
+                                <input id="id_full_name" type="text" name="full_name" placeholder="Full Name" class="form-control {% if form.full_name.errors %}is-invalid{% endif %}">
+                                <div class="invalid-feedback">
+                                    {{ form.full_name.errors }}
+                                </div>
+                            </div>
+                            <div class="my-1 form__input">
+                                <input id="id_password1" type="password" name="password1" placeholder="Password" class="form-control {% if form.password1s.errors %}is-invalid{% endif %}">
+                                <div class="invalid-feedback">
+                                    {{ form.password1.errors }}
+                                </div>
+                            </div>
+                            <div class="my-1 form__input">
+                                <input id="id_password2" type="password" name="password2" placeholder="Retype Password" class="form-control {% if form.password2.errors %}is-invalid{% endif %}">
+                                <div class="invalid-feedback">
+                                    {{ form.password2.errors }}
+                                </div>
+                            </div>
+                            <div class="my-4 mx-auto text-center">
+                                <button class="btn btn-sm auth__btn" type="submit">Sign up</button>
+                            </div>
+                        </form>
+                    </div>
+                    <p class="terms__conditions mb-4">By signing up, you agree to our <strong>Terms</strong> , <strong>Data Policy</strong> and <strong>Cookies Policy</strong> .</p>
+                </div>
+            </div>
+            <div class="text-center card mt-2 px-5 mx-auto signup__card">
+                <p class="have__an__account py-3">Have an account? <a href="{% url 'signin_View' %}" class="text-decoration-none">Sign in</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

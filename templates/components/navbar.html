@@ -1,0 +1,95 @@
+{% load static %}
+
+<header class="sticky-top">
+  <nav class="navbar navbar-light bg-white border-bottom py-1">
+      <div class="container">
+          <a class="navbar-brand" href="/">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 48 48" >
+                <radialGradient id="Tkc2EFCGCAaG3EvLlEqzza_hp54uGDlrEZB_gr1" cx="24.39" cy="40.173" r="38.605" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fe7356"></stop><stop offset="1" stop-color="#fd297c"></stop></radialGradient><path fill="url(#Tkc2EFCGCAaG3EvLlEqzza_hp54uGDlrEZB_gr1)" d="M17.2,20.187c7.65-2.429,8.864-9.471,7.893-15.786c0,0,0-0.364,0.243-0.243	C32.743,7.802,41,15.452,41,27.23c0,8.743-6.921,16.636-17,16.636c-10.929,0-17-7.65-17-16.757c0-5.464,3.643-10.929,7.893-13.357	c0,0,0.364,0,0.364,0.243c0,1.214,0.486,4.25,1.821,6.071L17.2,20.187z"></path>
+                </svg>   
+          </a>
+          <a class="navbar-brand" href="/"><h4>Social Media Dashboard</h4>  </a>
+        <div class="search__input m-auto d-none d-md-block">
+
+          <!-- Form to search Users -->
+          <form method="GET" action="{% url 'all_profile_view' %}" class="form-inline">
+            <input type="text" autocapitalize="none" placeholder="Search" value="" class="form-control" name="query">
+            <button type="submit" class="ml-2 btn p-0">
+              <i class="fa fa-search"></i>
+            </button>
+          </form>
+          <!-- Form to search Users End -->
+
+        </div>    
+        <ul class="navbar-nav ml-0 ml-md-auto d-flex flex-row">
+
+          {% comment %} Post Upload {% endcomment %}
+
+           <li class="nav-item px-md-3 px-2 d-flex flex-column justify-content-center">
+            <a href="{% url 'UploadPost' %}" class="text-decoration-none text-reset"><i class="fa fa-plus-square fa-lg" aria-hidden="true"></i></a>
+          </li> 
+
+          
+
+          <!-- Home Button -->
+          <li class="nav-item px-md-3 px-2 d-flex flex-column justify-content-center">
+            <a href="{% url 'dashboard' %}" class="text-decoration-none text-reset"><span class="nav__icons fa fa-home"></span></a>
+          </li>
+
+          <!-- Explore View Button -->
+          <li class="nav-item px-md-3 px-2 d-flex flex-column justify-content-center">
+            <a href="{% url 'explore_posts_view' %}" class="text-decoration-none text-reset"><span class="nav__icons far fa-compass"></span></a>
+          </li>
+
+          <!-- Liked Posts Button -->
+          <li class="nav-item px-md-3 px-2 d-flex flex-column justify-content-center">
+            <a href="{% url 'liked_posts_view' %}" class="text-decoration-none text-reset"><span class="nav__icons far fa-heart"></span></a>
+          </li>
+
+          <!-- Dropdown for more menu -->
+          <li class="nav-item dropdown ml-2">
+            <a class="nav-link dropdown-toggle" id="user__avatar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: inherit;padding: inherit;">
+
+              <!-- User's Profile Picture -->
+              {% if request.user.picture %}
+                <img src="{{ request.user.picture.url }}" class="rounded-circle z-depth-0">
+              {% else %}
+                <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png" class="rounded-circle z-depth-0">
+              {% endif %}
+              <!-- User's Profile Picture End -->
+
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user__avatar">
+
+              <!-- Profile View Button -->
+              <a class="dropdown-item" href="{% url 'profileView' request.user.username %}">
+                <span class="mr-3 fa fa-user-circle"></span>Profile
+              </a>
+
+              <!-- Saved posts Button -->
+              <a class="dropdown-item" href="{% url 'saved_posts_view'  %}">
+                <span class="mr-3 fa fa-bookmark"></span>Saved
+              </a>
+
+              <!-- Change Password Button -->
+              <a class="dropdown-item" href="{% url 'change_password' %}">
+                <span class="mr-3 fa fa-cog"></span>Change Password
+              </a>
+
+              <div class="dropdown-divider"></div>
+
+              <div class="dropdown-item">
+
+                <!-- Signout Button -->
+                <form method="POST" action="{% url 'signout_view' %}">
+                  {% csrf_token %}
+                  <a href="javascript:;" onclick="parentNode.submit();" class="text-reset text-decoration-none">Sign Out</a>
+                </form>
+                
+              </div>
+            </div>
+          </li>
+        </ul>          
+      </div>
+  </nav>
+</header>
