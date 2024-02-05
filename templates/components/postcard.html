@@ -23,7 +23,8 @@
   
               <!-- Link to Open Posts Detail page -->
               <a class="text-reset text-decoration-none" type="button" href="{% url 'post_detail_view' post.pk %}">
-                  <strong>Go to Post</strong>
+                  <strong><i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                  </strong>
               </a>
               <!-- Link to Open Posts Detail page End -->
   
@@ -32,14 +33,18 @@
       <div class="post__card__img">
   
           <!-- Post Image -->
-          <img src="{{ post.image.url }}" style="width: 100%;">
+          
+          <a class="text-reset text-decoration-none" type="button" href="{% url 'post_detail_view' post.pk %}">
+            <strong><img src="{{ post.image.url }}" style="width: 100%;"></strong>
+        </a>
   
       </div>
   
       <!-- Post Text if any -->
       {% if post.text_post %}
       <div class="post__card__text pt-3 px-2">
-          <h5>{{ post.text_post }}</h5>
+         <h5><i class="fa fa-info-circle" aria-hidden="true"></i></h5>
+          <p>{{ post.text_post }}</p>
       </div>
       {% endif %}
       

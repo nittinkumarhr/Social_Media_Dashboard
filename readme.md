@@ -97,7 +97,7 @@ Create to  **Core** App  to perform   Post  functionlites
 
   ![Forget image](markdown_image/Dashbord.png)
 
-- ### *Like and dislike showing when click on go to post*
+- ### *Like and dislike showing when click on  Three dots or click the posted image to like ,comment and save post*
 --- 
   - when click go to post
 
